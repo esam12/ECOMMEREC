@@ -8,17 +8,19 @@ import 'package:ecommerec/view/screen/auth/forgetPassword/success_resetpassword.
 import 'package:ecommerec/view/screen/auth/success_signup.dart';
 import 'package:ecommerec/view/screen/auth/forgetPassword/verifycode.dart';
 import 'package:ecommerec/view/screen/auth/verifycodesignup.dart';
+import 'package:ecommerec/view/screen/cart.dart';
 import 'package:ecommerec/view/screen/homescreen.dart';
 import 'package:ecommerec/view/screen/itemsscreen.dart';
 import 'package:ecommerec/view/screen/language.dart';
 import 'package:ecommerec/view/screen/myfavorite.dart';
 import 'package:ecommerec/view/screen/onboarding.dart';
 import 'package:ecommerec/view/screen/productdetails.dart';
+import 'package:ecommerec/view/screen/settings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? routes = [
-  GetPage(
-      name: "/", page: () => const Language(), middlewares: [MyMiddleware()]),
+  GetPage(name: "/", page: () => const Language(), middlewares: [MyMiddleware()]),
+  //GetPage(name: "/", page: () => const Cart()),
   GetPage(name: AppRoute.productdetails, page: () => const ProductDetails()),
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),
@@ -35,6 +37,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.homepage, page: () => const HomeScreen()),
   GetPage(name: AppRoute.itemscreen, page: () => const ItemsScreen()),
   GetPage(name: AppRoute.myfavorite, page: () => const MyFavorite()),
+  GetPage(name: AppRoute.settigns, page: () => const Settings()),
 ];
 
 // Map<String, Widget Function(BuildContext)> routes = {

@@ -1,5 +1,7 @@
+import 'dart:typed_data';
+
 class ItemsModel {
-  int? itemsId;
+  String? itemsId;
   String? itemsName;
   String? itemsNameAr;
   String? itemsDesc;
@@ -60,7 +62,7 @@ class ItemsModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['items_id'] = this.itemsId;
     data['items_name'] = this.itemsName;
     data['items_name_ar'] = this.itemsNameAr;

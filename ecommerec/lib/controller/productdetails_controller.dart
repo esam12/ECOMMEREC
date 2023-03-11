@@ -1,13 +1,21 @@
-import 'package:ecommerec/data/datasource/remote/items.dart';
+import 'package:ecommerec/controller/cart_controller.dart';
+import 'package:ecommerec/core/class/statusrequest.dart';
 import 'package:ecommerec/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
 
 abstract class ProductDetailsController extends GetxController {}
 
 class ProductDetailsControllerImp extends ProductDetailsController {
+  CartController controller = Get.put(CartController());
   late ItemsModel itemsModel;
-  initialData() {
+  late StatusRequest statusRequest;
+  int countitems = 0;
+  initialData() async {
+    statusRequest = StatusRequest.loading;
     itemsModel = Get.arguments['itemsmodel'];
+   countitems = await controller.getcountItems(itemsModel.itemsId!);
+    statusRequest = StatusRequest.success;
+    update();
   }
 
   List subItemsColors = [

@@ -1,5 +1,5 @@
 class AppLinkApi {
-  static const String server = "http://192.168.1.35/ecommerce/";
+  static const String server = "http://192.168.1.104/ecommerce/"; 
   static const String imagestatic = "assets/images";
 
   // auth
@@ -24,4 +24,10 @@ class AppLinkApi {
   static const String favoriteview = "$server/favorite/view.php";
   static const String deletefromfavorite =
       "$server/favorite/deletefromfavorite.php";
+
+  // Cart
+  static const String cartview   = "$server/cart/view.php";
+  static const String cartadd    = "$server/cart/add.php";
+  static const String cartdelete = "$server/cart/delete.php";
+  static const String countitems = "$server/cart/getcount.php";
 }
