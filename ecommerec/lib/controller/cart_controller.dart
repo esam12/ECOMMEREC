@@ -47,12 +47,12 @@ class CartController extends GetxController {
   getcountItems(String itemsid) async {
     statusrequest = StatusRequest.loading;
     var response = await cartdata.getCountItemsData(
-        myServices.sharedPreferences.getString("id")!, itemsid.toString());
+        myServices.sharedPreferences.getString("id")!, itemsid);
     statusrequest = handlingData(response);
     if (statusrequest == StatusRequest.success) {
       if (response['status'] == "success") {
         int countitems = 0;
-        countitems = int.parse(response['data']);
+        countitems = (response['data']);
         return countitems;
         //data.addAll(response['data']);
       } else {
@@ -62,4 +62,8 @@ class CartController extends GetxController {
   }
 
   view() {}
+  @override
+  void onInit() {
+    super.onInit();
+  }
 }

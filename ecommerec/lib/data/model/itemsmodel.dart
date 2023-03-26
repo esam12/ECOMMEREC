@@ -41,7 +41,7 @@ class ItemsModel {
       this.favorite});
 
   ItemsModel.fromJson(Map<String, dynamic> json) {
-    itemsId = json['items_id'];
+    itemsId = json['items_id'].toString();
     itemsName = json['items_name'];
     itemsNameAr = json['items_name_ar'];
     itemsDesc = json['items_desc'];

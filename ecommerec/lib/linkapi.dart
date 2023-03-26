@@ -1,5 +1,5 @@
 class AppLinkApi {
-  static const String server = "http://192.168.1.104/ecommerce/"; 
+  static const String server = "http://192.168.1.103/ecommerce/"; 
   static const String imagestatic = "assets/images";
 
   // auth

@@ -49,15 +49,14 @@ class Items extends StatelessWidget {
           width: 180,
         ),
         Positioned(
-            left: 25,
-            top: -15,
-            child: Text(
-              "${itemsmodel.itemsName}",
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17),
-            ))
+          left: 25,
+          top: -15,
+          child: Text(
+            "${itemsmodel.itemsName}",
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),
+          ),
+        )
       ],
     );
   }

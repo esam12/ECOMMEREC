@@ -19,8 +19,9 @@ import 'package:ecommerec/view/screen/settings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage<dynamic>>? routes = [
-  GetPage(name: "/", page: () => const Language(), middlewares: [MyMiddleware()]),
-  //GetPage(name: "/", page: () => const Cart()),
+  GetPage(
+      name: "/", page: () => const Language(), middlewares: [MyMiddleware()]),
+  GetPage(name: AppRoute.cart, page: () => const Cart()),
   GetPage(name: AppRoute.productdetails, page: () => const ProductDetails()),
   GetPage(name: AppRoute.login, page: () => const Login()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),

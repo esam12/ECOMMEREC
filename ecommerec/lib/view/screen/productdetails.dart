@@ -1,6 +1,8 @@
 import 'package:ecommerec/controller/productdetails_controller.dart';
 import 'package:ecommerec/core/class/handlingdataview.dart';
 import 'package:ecommerec/core/constant/color.dart';
+import 'package:ecommerec/core/constant/routes.dart';
+import 'package:ecommerec/view/screen/cart.dart';
 import 'package:ecommerec/view/widget/productdetails/price_count.dart';
 import 'package:ecommerec/view/widget/productdetails/subitemslist.dart';
 import 'package:ecommerec/view/widget/productdetails/toppageproductdetails.dart';
@@ -12,8 +14,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductDetailsControllerImp controller =
-        Get.put(ProductDetailsControllerImp());
+    Get.put(ProductDetailsControllerImp());
     return Scaffold(
         bottomNavigationBar: Container(
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -22,9 +23,11 @@ class ProductDetails extends StatelessWidget {
             color: AppColor.secondColor,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(AppRoute.cart);
+            },
             child: const Text(
-              "Add To Cart",
+              "Go To Cart",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
@@ -50,22 +53,20 @@ class ProductDetails extends StatelessWidget {
                                   .textTheme
                                   .headline1!
                                   .copyWith(
-                                      color: Color.fromARGB(255, 2, 55, 81)),
+                                      color:
+                                          const Color.fromARGB(255, 2, 55, 81)),
                             ),
                             const SizedBox(height: 10),
                             PriceCount(
                               onAdd: () {
-                                controller.controller
-                                    .add(controller.itemsModel.itemsId!);
+                                controller.add();
                               },
                               onRemove: () {
-                                controller.controller.delete(
-                                    controller.itemsModel.itemsId.toString());
+                                controller.delete();
                               },
                               price:
                                   controller.itemsModel.itemsPrice.toString(),
-                              count: controller.controller.getcountItems(
-                                  controller.itemsModel.itemsId.toString()),
+                              count: "${controller.countitems}",
                             ),
                             const SizedBox(height: 10),
                             Text(

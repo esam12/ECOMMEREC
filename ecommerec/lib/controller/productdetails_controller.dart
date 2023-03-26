@@ -13,7 +13,7 @@ class ProductDetailsControllerImp extends ProductDetailsController {
   initialData() async {
     statusRequest = StatusRequest.loading;
     itemsModel = Get.arguments['itemsmodel'];
-   countitems = await controller.getcountItems(itemsModel.itemsId!);
+    countitems = await controller.getcountItems(itemsModel.itemsId.toString());
     statusRequest = StatusRequest.success;
     update();
   }
@@ -23,6 +23,20 @@ class ProductDetailsControllerImp extends ProductDetailsController {
     {"name": "Black", "id": 2, "active": '1'},
     {"name": "Green", "id": 3, "active": '0'},
   ];
+
+  add() {
+    controller.add(itemsModel.itemsId.toString());
+    countitems++;
+    update();
+  }
+
+  delete() {
+    if (countitems > 0) {
+      controller.delete(itemsModel.itemsId.toString());
+      countitems--;
+      update();
+    }
+  }
 
   @override
   void onInit() {
