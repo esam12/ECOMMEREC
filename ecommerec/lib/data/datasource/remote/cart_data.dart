@@ -21,4 +21,10 @@ class CartData {
         AppLinkApi.countitems, {"usersid": usersid, "itemsid": itemsid});
     return response.fold((l) => l, (r) => r);
   }
+
+  viewCartData(String usersid) async {
+    var response =
+        await crud.postData(AppLinkApi.cartview, {"usersid": usersid});
+    return response.fold((l) => l, (r) => r);
+  }
 }

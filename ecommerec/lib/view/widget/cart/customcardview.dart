@@ -6,11 +6,13 @@ class CustomCardView extends StatelessWidget {
   final String name;
   final String price;
   final String count;
+  final String image;
   const CustomCardView(
       {super.key,
       required this.name,
       required this.price,
-      required this.count});
+      required this.count,
+      required this.image});
 
   @override
   Widget build(BuildContext context) {
