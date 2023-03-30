@@ -1,5 +1,7 @@
 import 'package:ecommerec/core/constant/routes.dart';
 import 'package:ecommerec/core/middleware/mymiddleware.dart';
+import 'package:ecommerec/view/screen/address/add.dart';
+import 'package:ecommerec/view/screen/address/view.dart';
 import 'package:ecommerec/view/screen/auth/forgetPassword/forgetpassword.dart';
 import 'package:ecommerec/view/screen/auth/login.dart';
 import 'package:ecommerec/view/screen/auth/forgetPassword/resetpassword.dart';
@@ -39,6 +41,8 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.itemscreen, page: () => const ItemsScreen()),
   GetPage(name: AppRoute.myfavorite, page: () => const MyFavorite()),
   GetPage(name: AppRoute.settigns, page: () => const Settings()),
+  GetPage(name: AppRoute.addressView, page: () => const AddressView()),
+  GetPage(name: AppRoute.addressAdd, page: () => const AddressAdd()),
 ];
 
 // Map<String, Widget Function(BuildContext)> routes = {

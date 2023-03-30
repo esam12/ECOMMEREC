@@ -10,15 +10,17 @@ class AppRoute {
   static const String successResetPassword = "/successresetpassword";
   static const String verfiyCodeSignUp = "/verfiycodesignup";
 
-  //
-    static const String homepage = "/homepage";
-    static const String itemscreen = "/items";
-    static const String productdetails = "/productdetails";
-    static const String myfavorite = "/myfavorite";
-    
-    static const String settigns = "/settigns";
-    static const String cart = "/cart";
+  // Home
+  static const String homepage = "/homepage";
+  static const String itemscreen = "/items";
+  static const String productdetails = "/productdetails";
+  static const String myfavorite = "/myfavorite";
+  static const String settigns = "/settigns";
 
+  // Cart
+  static const String cart = "/cart";
 
-
+  // Address
+  static const String addressView = "/addressView";
+  static const String addressAdd = "/addressAdd";
 }

@@ -1,6 +1,7 @@
 import 'package:ecommerec/controller/settings_controller.dart';
 import 'package:ecommerec/core/constant/color.dart';
 import 'package:ecommerec/core/constant/imageasset.dart';
+import 'package:ecommerec/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,7 +47,9 @@ class Settings extends StatelessWidget {
                       title: const Text("Disable Notifications"),
                       trailing: Switch(value: true, onChanged: ((value) {}))),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoute.addressView);
+                    },
                     title: const Text("Address"),
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
