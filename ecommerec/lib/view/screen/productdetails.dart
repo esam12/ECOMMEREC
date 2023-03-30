@@ -2,7 +2,6 @@ import 'package:ecommerec/controller/productdetails_controller.dart';
 import 'package:ecommerec/core/class/handlingdataview.dart';
 import 'package:ecommerec/core/constant/color.dart';
 import 'package:ecommerec/core/constant/routes.dart';
-import 'package:ecommerec/view/screen/cart.dart';
 import 'package:ecommerec/view/widget/productdetails/price_count.dart';
 import 'package:ecommerec/view/widget/productdetails/subitemslist.dart';
 import 'package:ecommerec/view/widget/productdetails/toppageproductdetails.dart';
@@ -14,7 +13,8 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ProductDetailsControllerImp());
+    ProductDetailsControllerImp controller =
+        Get.put(ProductDetailsControllerImp());
     return Scaffold(
         bottomNavigationBar: Container(
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -24,6 +24,7 @@ class ProductDetails extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             onPressed: () {
+              controller.controller.refreshPage();
               Get.toNamed(AppRoute.cart);
             },
             child: const Text(

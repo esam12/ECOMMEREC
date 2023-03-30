@@ -1,6 +1,8 @@
 import 'package:ecommerec/controller/homepage_controller.dart';
 import 'package:ecommerec/core/class/handlingdataview.dart';
 import 'package:ecommerec/core/constant/routes.dart';
+import 'package:ecommerec/data/model/itemsmodel.dart';
+import 'package:ecommerec/linkapi.dart';
 import 'package:ecommerec/view/widget/home/customcardhome.dart';
 import 'package:ecommerec/view/widget/home/customcategories.dart';
 import 'package:ecommerec/view/widget/customeappbar.dart';
@@ -16,29 +18,90 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomePageControllerImp());
     return GetBuilder<HomePageControllerImp>(
-      builder: (controller) => HandlingData(
-        statusRequest: controller.statusrequest,
-        widget: Container(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-          child: ListView(children: [
-            CustomAppBar(
-              titleappbar: "Find Product",
-              onPressedSearch: () {},
-              onPressedFavorite: () {
-                Get.toNamed(AppRoute.myfavorite);
-              },
-            ),
-            const CustomCardHome(
-                title: "A Summer Surprise", body: "Cashback 20%"),
-            const CustomItemsTitleHome(title: "Categories"),
-            const CategoriesListViewHome(),
-            const CustomItemsTitleHome(title: "Product for you"),
-            const CustomItems(),
-            const CustomItemsTitleHome(title: "Offer"),
-            const CustomItems(),
-          ]),
-        ),
+      builder: (controller) => Container(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+        child: ListView(children: [
+          CustomAppBar(
+            mycontroller: controller.search!,
+            onChanged: (val) {
+              controller.checkSearch(val);
+            },
+            titleappbar: "Find Product",
+            onPressedSearch: () {
+              controller.onSearchItems();
+            },
+            onPressedFavorite: () {
+              Get.toNamed(AppRoute.myfavorite);
+            },
+          ),
+          HandlingData(
+              statusRequest: controller.statusrequest,
+              widget: !controller.isSearch
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        CustomCardHome(
+                            title: "A Summer Surprise", body: "Cashback 20%"),
+                        CustomItemsTitleHome(title: "Categories"),
+                        CategoriesListViewHome(),
+                        CustomItemsTitleHome(title: "Product for you"),
+                        CustomItems(),
+                        CustomItemsTitleHome(title: "Offer"),
+                        CustomItems(),
+                      ],
+                    )
+                  : ListItemsSearch(
+                      listdataModel: controller.listdata,
+                    )),
+        ]),
       ),
     );
+  }
+}
+
+class ListItemsSearch extends GetView<HomePageControllerImp> {
+  final List<ItemsModel> listdataModel;
+  const ListItemsSearch({super.key, required this.listdataModel});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: listdataModel.length,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              controller.goToPageProductDetails(listdataModel[index]);
+            },
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 15),
+              child: Card(
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Image.asset(
+                            "${AppLinkApi.imagestatic}/${listdataModel[index].itemsImage}",
+                            height: 100),
+                      ),
+                      Expanded(
+                        child: ListTile(
+                          title: Text(
+                            "${listdataModel[index].itemsImage}",
+                          ),
+                          subtitle: Text(
+                            "${listdataModel[index].categoriesName}",
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

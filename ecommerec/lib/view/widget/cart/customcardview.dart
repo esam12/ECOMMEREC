@@ -7,12 +7,16 @@ class CustomCardView extends StatelessWidget {
   final String price;
   final String count;
   final String image;
+  final void Function()? onAdd;
+  final void Function()? onRemove;
   const CustomCardView(
       {super.key,
       required this.name,
       required this.price,
       required this.count,
-      required this.image});
+      required this.image,
+      required this.onAdd,
+      required this.onRemove});
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +45,12 @@ class CustomCardView extends StatelessWidget {
               child: Column(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: onAdd,
                 icon: const Icon(Icons.add),
               ),
               Text(count, style: const TextStyle(fontFamily: "sans")),
               IconButton(
-                onPressed: () {},
+                onPressed: onRemove,
                 icon: const Icon(Icons.remove),
               ),
             ],

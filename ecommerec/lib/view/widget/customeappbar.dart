@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String titleappbar;
   final void Function()? onPressedSearch;
   final void Function()? onPressedFavorite;
+  final void Function(String)? onChanged;
+  final TextEditingController mycontroller;
   const CustomAppBar({
     super.key,
     required this.titleappbar,
     this.onPressedSearch,
     required this.onPressedFavorite,
+    required this.onChanged,
+    required this.mycontroller,
   });
 
   @override
@@ -18,6 +23,8 @@ class CustomAppBar extends StatelessWidget {
       child: Row(children: [
         Expanded(
           child: TextFormField(
+            onChanged: onChanged,
+            controller: mycontroller,
             decoration: InputDecoration(
                 prefixIcon: IconButton(
                   icon: const Icon(Icons.search),

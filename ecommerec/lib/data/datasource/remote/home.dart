@@ -10,4 +10,9 @@ class HomeData {
     var response = await crud.postData(AppLinkApi.homepage, {});
     return response.fold((l) => l, (r) => r);
   }
+
+  searchData(String searchdata) async {
+    var response = await crud.postData(AppLinkApi.search, {"search":searchdata});
+    return response.fold((l) => l, (r) => r);
+  }
 }

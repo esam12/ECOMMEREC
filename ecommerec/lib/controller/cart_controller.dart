@@ -13,8 +13,10 @@ class CartController extends GetxController {
   int totalcountitems = 0;
   StatusRequest statusrequest = StatusRequest.none;
   CartData cartdata = CartData(Get.find());
+
   add(String itemsid) async {
     statusrequest = StatusRequest.loading;
+    update();
     var response = await cartdata.addCart(
         myServices.sharedPreferences.getString("id")!, itemsid.toString());
     statusrequest = handlingData(response);
@@ -29,10 +31,12 @@ class CartController extends GetxController {
         statusrequest = StatusRequest.failure;
       }
     }
+    update();
   }
 
   delete(String itemsid) async {
     statusrequest = StatusRequest.loading;
+    update();
     var response = await cartdata.deleteData(
         myServices.sharedPreferences.getString("id")!, itemsid.toString());
     statusrequest = handlingData(response);
@@ -46,6 +50,7 @@ class CartController extends GetxController {
         statusrequest = StatusRequest.failure;
       }
     }
+    update();
   }
 
   getcountItems(String itemsid) async {
@@ -65,19 +70,34 @@ class CartController extends GetxController {
     }
   }
 
+  resetVarCart() {
+    totalcountitems = 0;
+    priceorders = 0.0;
+    data.clear();
+  }
+
+  refreshPage() {
+    resetVarCart();
+    view();
+  }
+
   view() async {
     statusrequest = StatusRequest.loading;
+    update();
     var response = await cartdata
         .viewCartData(myServices.sharedPreferences.getString("id")!);
     statusrequest = handlingData(response);
     if (statusrequest == StatusRequest.success) {
       if (response['status'] == "success") {
-        List dataresponse = response['datacart'];
-        Map dataresponsecountprice = response['countprice'];
-        data.addAll(dataresponse.map((e) => CartModel.fromJson(e)));
-        totalcountitems = int.parse(dataresponsecountprice['totalcount']);
-        priceorders =
-            double.parse(dataresponsecountprice['totalprice'].toString());
+        if (response['datacart']['status'] == 'success') {
+          List dataresponse = response['datacart']['data'];
+          Map dataresponsecountprice = response['countprice'];
+          data.clear();
+          data.addAll(dataresponse.map((e) => CartModel.fromJson(e)));
+          totalcountitems = int.parse(dataresponsecountprice['totalcount']);
+          priceorders =
+              double.parse(dataresponsecountprice['totalprice'].toString());
+        }
       } else {
         statusrequest = StatusRequest.failure;
       }

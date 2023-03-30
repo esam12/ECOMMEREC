@@ -17,13 +17,13 @@ class MyFavorite extends StatelessWidget {
         child: GetBuilder<MyFavoriteDataControllerImp>(
           builder: (controller) => ListView(
             children: [
-              CustomAppBar(
-                titleappbar: "Find Product",
-                onPressedSearch: () {},
-                onPressedFavorite: () {
-                  //Get.toNamed(AppRoute.myfavorite);
-                },
-              ),
+              // CustomAppBar(
+              //   titleappbar: "Find Product",
+              //   onPressedSearch: () {},
+              //   onPressedFavorite: () {
+              //     //Get.toNamed(AppRoute.myfavorite);
+              //   },
+              // ),
               HandlingData(
                   statusRequest: controller.statusrequest,
                   widget: GridView.builder(
