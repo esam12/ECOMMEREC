@@ -23,4 +23,7 @@ class AppRoute {
   // Address
   static const String addressView = "/addressView";
   static const String addressAdd = "/addressAdd";
+  static const String addressdetails = "/addressdetails";
+
+  static const String checkout = "/checkout";
 }

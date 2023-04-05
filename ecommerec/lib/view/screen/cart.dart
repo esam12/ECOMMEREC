@@ -1,6 +1,6 @@
 import 'package:ecommerec/controller/cart_controller.dart';
 import 'package:ecommerec/core/class/handlingdataview.dart';
-import 'package:ecommerec/view/widget/cart/appbarcart.dart';
+import 'package:ecommerec/core/constant/color.dart';
 import 'package:ecommerec/view/widget/cart/custombottomnavigationbar.dart';
 import 'package:ecommerec/view/widget/cart/customcardview.dart';
 import 'package:flutter/material.dart';
@@ -13,20 +13,26 @@ class Cart extends StatelessWidget {
   Widget build(BuildContext context) {
     CartController cartController = Get.put(CartController());
     return Scaffold(
+      appBar: AppBar(
+        //   backgroundColor: Colors.grey[50],
+        title: const Text("My Cart"),
+      ),
       bottomNavigationBar: GetBuilder<CartController>(
         builder: (controller) => CustomBottomNavigationBar(
+            onApply: () {
+              cartController.checkCouponName();
+            },
+            controllercoupon: cartController.coupontext,
             price: "${cartController.priceorders}",
-            shipping: "300",
-            totalprice: "1500"),
+            discount: "${cartController.coupondiscount}%",
+            shipping: "${10}",
+            totalprice: "${cartController.getTotalPrice()}"),
       ),
       body: GetBuilder<CartController>(
         builder: ((controller) => HandlingDataRequest(
               statusRequest: cartController.statusrequest,
               widget: ListView(
                 children: [
-                  const AppBarCart(
-                    title: 'My Cart',
-                  ),
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: Column(

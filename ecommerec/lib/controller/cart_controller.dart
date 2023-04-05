@@ -3,11 +3,16 @@ import 'package:ecommerec/core/functions/handlingdata.dart';
 import 'package:ecommerec/core/services/services.dart';
 import 'package:ecommerec/data/datasource/remote/cart_data.dart';
 import 'package:ecommerec/data/model/cartmodel.dart';
+import 'package:ecommerec/data/model/couponmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
+  TextEditingController? coupontext;
   MyServices myServices = Get.find();
+  int? coupondiscount = 0;
+  String? couponname;
+  CouponModel? couponModel;
   List<CartModel> data = [];
   double priceorders = 0.0;
   int totalcountitems = 0;
@@ -105,8 +110,32 @@ class CartController extends GetxController {
     update();
   }
 
+  getTotalPrice() {
+    return (priceorders - priceorders * coupondiscount! / 100);
+  }
+
+  checkCouponName() async {
+    statusrequest = StatusRequest.loading;
+    update();
+    var response = await cartdata.checkCoupon(coupontext!.text);
+    statusrequest = handlingData(response);
+    if (statusrequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        Map<String, dynamic> datacoupon = response['data'];
+        couponModel = CouponModel.fromJson(datacoupon);
+        coupondiscount = int.parse(couponModel!.couponDiscount!);
+        couponname = couponModel!.couponName;
+      } else {
+        coupondiscount = 0;
+        couponname = null;
+      }
+    }
+    update();
+  }
+
   @override
   void onInit() {
+    coupontext = TextEditingController();
     view();
     super.onInit();
   }
