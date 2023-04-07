@@ -1,6 +1,5 @@
 import 'package:ecommerec/controller/cart_controller.dart';
 import 'package:ecommerec/core/class/handlingdataview.dart';
-import 'package:ecommerec/core/constant/color.dart';
 import 'package:ecommerec/view/widget/cart/custombottomnavigationbar.dart';
 import 'package:ecommerec/view/widget/cart/customcardview.dart';
 import 'package:flutter/material.dart';

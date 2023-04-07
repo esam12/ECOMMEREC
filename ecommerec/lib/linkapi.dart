@@ -40,6 +40,10 @@ class AppLinkApi {
   static const String addressedit = "$server/address/edit.php";
 
   //Coupon
-    static const String checkcoupon = "$server/coupon/checkcoupon.php";
+  static const String checkcoupon = "$server/coupon/checkcoupon.php";
 
+  //Orders
+  static const String checkout = "$server/orders/checkout.php";
+  static const String pendingorders = "$server/orders/pendingorders.php";
+  static const String archiveorders = "$server/orders/archiveorders.php";
 }

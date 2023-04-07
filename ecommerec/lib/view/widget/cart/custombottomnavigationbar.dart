@@ -1,12 +1,11 @@
 import 'package:ecommerec/controller/cart_controller.dart';
 import 'package:ecommerec/core/constant/color.dart';
-import 'package:ecommerec/core/constant/routes.dart';
 import 'package:ecommerec/view/widget/cart/buttoncart.dart';
 import 'package:ecommerec/view/widget/cart/custombuttoncoupon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
+class CustomBottomNavigationBar extends GetView<CartController> {
   final String price;
   final String discount;
   final String totalprice;
@@ -160,9 +159,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           CustomButtonCart(
-            textbutton: "Place Order",
+            textbutton: "Order",
             onPressed: (() {
-              Get.toNamed(AppRoute.checkout);
+              controller.goToPageCheckOut();
             }),
           )
         ],

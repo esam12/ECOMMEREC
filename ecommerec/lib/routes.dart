@@ -18,6 +18,8 @@ import 'package:ecommerec/view/screen/itemsscreen.dart';
 import 'package:ecommerec/view/screen/language.dart';
 import 'package:ecommerec/view/screen/myfavorite.dart';
 import 'package:ecommerec/view/screen/onboarding.dart';
+import 'package:ecommerec/view/screen/orders/archiveorders.dart';
+import 'package:ecommerec/view/screen/orders/pendingorders.dart';
 import 'package:ecommerec/view/screen/productdetails.dart';
 import 'package:ecommerec/view/screen/settings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -47,6 +49,8 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.addressAdd, page: () => const AddressAdd()),
   GetPage(name: AppRoute.addressdetails, page: () => const AddressDetails()),
   GetPage(name: AppRoute.checkout, page: () => const CheckOutScreen()),
+  GetPage(name: AppRoute.pendingOrders, page: () => const PendingOrders()),
+  GetPage(name: AppRoute.archiveOrders, page: () => const ArchiveOrders()),
 ];
 
 // Map<String, Widget Function(BuildContext)> routes = {

@@ -1,4 +1,5 @@
 import 'package:ecommerec/core/class/statusrequest.dart';
+import 'package:ecommerec/core/constant/routes.dart';
 import 'package:ecommerec/core/functions/handlingdata.dart';
 import 'package:ecommerec/core/services/services.dart';
 import 'package:ecommerec/data/datasource/remote/cart_data.dart';
@@ -16,6 +17,7 @@ class CartController extends GetxController {
   List<CartModel> data = [];
   double priceorders = 0.0;
   int totalcountitems = 0;
+  String? couponid;
   StatusRequest statusrequest = StatusRequest.none;
   CartData cartdata = CartData(Get.find());
 
@@ -75,6 +77,15 @@ class CartController extends GetxController {
     }
   }
 
+  goToPageCheckOut() {
+    if (data.isEmpty) return Get.snackbar("Warning", "The basket isEmpty");
+    Get.toNamed(AppRoute.checkout, arguments: {
+      "couponid": couponid ?? "0",
+      "orderprice": priceorders.toString(),
+      "ordersdiscount": coupondiscount
+    });
+  }
+
   resetVarCart() {
     totalcountitems = 0;
     priceorders = 0.0;
@@ -125,9 +136,12 @@ class CartController extends GetxController {
         couponModel = CouponModel.fromJson(datacoupon);
         coupondiscount = int.parse(couponModel!.couponDiscount!);
         couponname = couponModel!.couponName;
+        couponid = couponModel!.couponId.toString();
       } else {
         coupondiscount = 0;
         couponname = null;
+        couponid = null;
+        Get.snackbar("Error", "Coupon Not Valid ");
       }
     }
     update();
