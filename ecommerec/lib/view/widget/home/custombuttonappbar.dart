@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 
 class CustomButtonOnAppBar extends StatelessWidget {
   final void Function()? onPressed;
-  final String textButton;
+  //final String textButton;
   final IconData iconData;
   final bool active;
   const CustomButtonOnAppBar(
       {super.key,
       required this.onPressed,
-      required this.textButton,
+      //required this.textButton,
       required this.iconData,
       required this.active});
 
@@ -27,13 +27,13 @@ class CustomButtonOnAppBar extends StatelessWidget {
                     color: active == true
                         ? AppColor.primaryColor
                         : AppColor.grey_800),
-                Text(
-                  textButton,
-                  style: TextStyle(
-                      color: active == true
-                          ? AppColor.primaryColor
-                          : AppColor.grey_800),
-                )
+                // Text(
+                //   textButton,
+                //   style: TextStyle(
+                //       color: active == true
+                //           ? AppColor.primaryColor
+                //           : AppColor.grey_800),
+                // )
               ],
             ),
           )),

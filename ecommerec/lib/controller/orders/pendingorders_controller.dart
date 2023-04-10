@@ -12,12 +12,12 @@ class PendingOrdersController extends GetxController {
   MyServices myServices = Get.find();
 
   getOrdersPendingData() async {
+    data.clear();
     statusRequest = StatusRequest.loading;
+    update();
     var response = await pendingorders
         .getPendingData(myServices.sharedPreferences.getString("id")!);
-
     statusRequest = handlingData(response);
-
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         List listdata = response['data'];
@@ -55,6 +55,10 @@ class PendingOrdersController extends GetxController {
     } else {
       return "Archive";
     }
+  }
+
+  refreshOrders() {
+    getOrdersPendingData();
   }
 
   @override

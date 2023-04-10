@@ -82,6 +82,7 @@ class CheckOutController extends GetxController {
       }
     }
     update();
+    
   }
 
   @override

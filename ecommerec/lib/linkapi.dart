@@ -46,4 +46,9 @@ class AppLinkApi {
   static const String checkout = "$server/orders/checkout.php";
   static const String pendingorders = "$server/orders/pendingorders.php";
   static const String archiveorders = "$server/orders/archiveorders.php";
+
+
+  //Notification
+    static const String notification = "$server/notification.php";
+
 }

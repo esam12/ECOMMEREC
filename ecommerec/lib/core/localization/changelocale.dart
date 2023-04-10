@@ -1,4 +1,5 @@
 import 'package:ecommerec/core/constant/apptheme.dart';
+import 'package:ecommerec/core/functions/fcm.dart';
 import 'package:ecommerec/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -43,7 +44,10 @@ class LocaleController extends GetxController {
 
   @override
   void onInit() {
+    requestPermissionNotification();
+    fcmconfig();
     requestPermissionLocation();
+
     String? sharedPrefLang = myServices.sharedPreferences.getString("lang");
     if (sharedPrefLang == "ar") {
       language = const Locale("ar");

@@ -1,4 +1,5 @@
 import 'package:ecommerec/view/screen/homepage.dart';
+import 'package:ecommerec/view/screen/notification.dart';
 import 'package:ecommerec/view/screen/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,20 +12,16 @@ class HomeScreenControllerImp extends HomeScreenController {
   int currentpage = 0;
   List<Widget> listPage = [
     const HomePage(),
-    Column(
-      children: const [
-        // Settings(),
-      ],
-    ),
+    const NotificationScreen(),
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
         Center(
-          child: Text("Favorite"),
+          child: Text("Profile"),
         )
       ],
     ),
-   const Settings(),
+    const Settings(),
   ];
 
   List bottomappbar = [

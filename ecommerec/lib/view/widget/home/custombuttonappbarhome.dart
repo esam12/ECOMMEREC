@@ -24,7 +24,7 @@ class CustomButtonAppBarHome extends GetView<HomeScreenControllerImp> {
                         onPressed: () {
                           controller.changePage(i);
                         },
-                        textButton: controller.bottomappbar[i]['title'],
+                       // textButton: controller.bottomappbar[i]['title'],
                         iconData: controller.bottomappbar[i]['icon'],
                         active: controller.currentpage == i ? true : false,
                       );
