@@ -1,5 +1,5 @@
 class AppLinkApi {
-  static const String server = "http://192.168.1.103/ecommerce/";
+  static const String server = "http://192.168.1.190/ecommerce/";
   static const String imagestatic = "assets/images";
   static const String imagestItems = "$imagestatic/items";
 
@@ -19,6 +19,7 @@ class AppLinkApi {
   static const String homepage = "$server/home.php";
   static const String items = "$server/items/items.php";
   static const String search = "$server/items/search.php";
+
 
   //Favorite
   static const String addFav = "$server/favorite/add.php";

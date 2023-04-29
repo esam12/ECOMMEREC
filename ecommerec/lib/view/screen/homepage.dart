@@ -39,15 +39,19 @@ class HomePage extends StatelessWidget {
               widget: !controller.isSearch
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        CustomCardHome(
-                            title: "A Summer Surprise", body: "Cashback 20%"),
-                        CustomItemsTitleHome(title: "Categories"),
-                        CategoriesListViewHome(),
-                        CustomItemsTitleHome(title: "Top Selling"),
-                        CustomItems(),
-                        CustomItemsTitleHome(title: "Offer"),
-                        CustomItems(),
+                      children: [
+                        if (controller.settings.isNotEmpty)
+                          CustomCardHome(
+                              title:
+                                  "${controller.settings[0]['settings_titlehome']}",
+                              body:
+                                  "${controller.settings[0]['settings_bodyhome']}"),
+                        const CustomItemsTitleHome(title: "Categories"),
+                        const CategoriesListViewHome(),
+                        const CustomItemsTitleHome(title: "Top Selling"),
+                        const CustomItems(),
+                        const CustomItemsTitleHome(title: "Offer"),
+                        const CustomItems(),
                       ],
                     )
                   : ListItemsSearch(

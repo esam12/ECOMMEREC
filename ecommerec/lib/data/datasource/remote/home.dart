@@ -15,4 +15,5 @@ class HomeData {
     var response = await crud.postData(AppLinkApi.search, {"search":searchdata});
     return response.fold((l) => l, (r) => r);
   }
+
 }

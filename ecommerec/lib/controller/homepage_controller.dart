@@ -20,6 +20,7 @@ class HomePageControllerImp extends HomePageController {
 
   List categories = [];
   List items = [];
+  List settings = [];
 
   HomeData homeData = HomeData(Get.find());
 
@@ -46,6 +47,7 @@ class HomePageControllerImp extends HomePageController {
       if (response['status'] == "success") {
         categories.addAll(response['categories']['data']);
         items.addAll(response['items']['data']);
+        settings.addAll(response['settings']['data']);
       } else {
         statusrequest = StatusRequest.failure;
       }
