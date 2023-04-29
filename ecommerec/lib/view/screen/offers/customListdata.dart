@@ -8,16 +8,14 @@ import 'package:ecommerec/linkapi.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomListItems extends GetView<ItemsControllerImp> {
+class CustomListData extends GetView<ItemsControllerImp> {
   final ItemsModel itemsModel;
-  const CustomListItems({super.key, required this.itemsModel});
+  const CustomListData({super.key, required this.itemsModel});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        controller.goToPageProductDetails(itemsModel);
-      },
+      onTap: () {},
       child: Card(
         child: Stack(
           children: [
@@ -44,27 +42,27 @@ class CustomListItems extends GetView<ItemsControllerImp> {
                           fontSize: 15,
                           fontWeight: FontWeight.bold),
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     const Text("Rating 3.5"),
-                    //     Container(
-                    //       alignment: Alignment.bottomCenter,
-                    //       height: 25,
-                    //       child: Row(
-                    //         children: [
-                    //           ...List.generate(
-                    //             5,
-                    //             (index) => const Icon(
-                    //               Icons.star,
-                    //               size: 15,
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     )
-                    //   ],
-                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Rating 3.5"),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          height: 25,
+                          child: Row(
+                            children: [
+                              ...List.generate(
+                                5,
+                                (index) => const Icon(
+                                  Icons.star,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

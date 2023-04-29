@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                             title: "A Summer Surprise", body: "Cashback 20%"),
                         CustomItemsTitleHome(title: "Categories"),
                         CategoriesListViewHome(),
-                        CustomItemsTitleHome(title: "Product for you"),
+                        CustomItemsTitleHome(title: "Top Selling"),
                         CustomItems(),
                         CustomItemsTitleHome(title: "Offer"),
                         CustomItems(),

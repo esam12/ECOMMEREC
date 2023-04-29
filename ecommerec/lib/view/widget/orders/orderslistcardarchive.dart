@@ -1,14 +1,15 @@
-import 'package:ecommerec/controller/orders/pendingorders_controller.dart';
+import 'package:ecommerec/controller/orders/archive_controller.dart';
 import 'package:ecommerec/core/constant/color.dart';
 import 'package:ecommerec/core/constant/routes.dart';
 import 'package:ecommerec/data/model/ordersmodel.dart';
+import 'package:ecommerec/view/widget/orders/dialograting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 
-class CardOrders extends GetView<PendingOrdersController> {
+class CardOrdersArchive extends GetView<ArchiveOrdersController> {
   final OrdersModel orderModel;
-  const CardOrders({super.key, required this.orderModel});
+  const CardOrdersArchive({super.key, required this.orderModel});
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +67,17 @@ class CardOrders extends GetView<PendingOrdersController> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                if (orderModel.ordersStatus == "0")
+                if (orderModel.ordersRating == "0")
                   MaterialButton(
                     onPressed: () {
-                      controller.getOrdersDeleteData(orderModel.ordersId!);
+                      showDialogRating(context, orderModel.ordersId!);
                     },
                     color: AppColor.primaryColor,
                     child: const Text(
-                      "Delete",
+                      "Rating",
                       style: TextStyle(color: Colors.white),
                     ),
-                  )
+                  ),
               ],
             ),
           ],

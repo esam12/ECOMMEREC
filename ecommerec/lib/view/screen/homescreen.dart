@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ecommerec/controller/homescreen_controller.dart';
 import 'package:ecommerec/core/constant/color.dart';
 import 'package:ecommerec/core/constant/routes.dart';
@@ -23,7 +25,25 @@ class HomeScreen extends StatelessWidget {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: const CustomButtonAppBarHome(),
-            body: controller.listPage.elementAt(controller.currentpage),
+            body: WillPopScope(
+              child: controller.listPage.elementAt(controller.currentpage),
+              onWillPop: () {
+                Get.defaultDialog(
+                  title: "Warring",
+                  titleStyle: const TextStyle(
+                      fontWeight: FontWeight.bold, color: AppColor.secondColor),
+                  middleText: "Do You Want To Exit The App ?",
+                  onCancel: () {},
+                  cancelTextColor: AppColor.secondColor,
+                  confirmTextColor: AppColor.secondColor,
+                  buttonColor: AppColor.fourthColor,
+                  onConfirm: () {
+                    exit(0);
+                  },
+                );
+                return Future.value(false);
+              },
+            ),
           )),
     );
   }

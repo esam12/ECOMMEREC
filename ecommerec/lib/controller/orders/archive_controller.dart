@@ -1,43 +1,29 @@
 import 'package:ecommerec/core/class/statusrequest.dart';
 import 'package:ecommerec/core/functions/handlingdata.dart';
 import 'package:ecommerec/core/services/services.dart';
-import 'package:ecommerec/data/datasource/remote/orders/pendingorders_data.dart';
+import 'package:ecommerec/data/datasource/remote/orders/archive_data.dart';
 import 'package:ecommerec/data/model/ordersmodel.dart';
 import 'package:get/get.dart';
 
-class PendingOrdersController extends GetxController {
-  PendingOrdersData pendingorders = PendingOrdersData(Get.find());
+class ArchiveOrdersController extends GetxController {
+  ArchiveOrdersData archiveorders = ArchiveOrdersData(Get.find());
   List<OrdersModel> data = [];
   late StatusRequest statusRequest;
   MyServices myServices = Get.find();
 
-  getOrdersPendingData() async {
+  getArchiveOrdersData() async {
     data.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await pendingorders
-        .getPendingData(myServices.sharedPreferences.getString("id")!);
+    var response = await archiveorders
+        .getArchiveData(myServices.sharedPreferences.getString("id")!);
     statusRequest = handlingData(response);
     if (statusRequest == StatusRequest.success) {
       if (response['status'] == "success") {
         List listdata = response['data'];
-        data.addAll(listdata.map((e) => OrdersModel.fromJson(e)));
-      } else {
-        statusRequest = StatusRequest.failure;
-      }
-    }
-    update();
-  }
-
-  getOrdersDeleteData(String ordersid) async {
-    data.clear();
-    statusRequest = StatusRequest.loading;
-    update();
-    var response = await pendingorders.getDeleteData(ordersid);
-    statusRequest = handlingData(response);
-    if (statusRequest == StatusRequest.success) {
-      if (response['status'] == "success") {
-        refreshOrders();
+        data.addAll(
+          listdata.map((e) => OrdersModel.fromJson(e)),
+        );
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -76,12 +62,29 @@ class PendingOrdersController extends GetxController {
   }
 
   refreshOrders() {
-    getOrdersPendingData();
+    getArchiveOrdersData();
+  }
+
+  submitRating(String ordersid, double rating, String comment) async {
+    data.clear();
+    statusRequest = StatusRequest.loading;
+    update();
+    var response =
+        await archiveorders.getRating(ordersid, rating.toString(), comment);
+    statusRequest = handlingData(response);
+    if (statusRequest == StatusRequest.success) {
+      if (response['status'] == "success") {
+        getArchiveOrdersData();
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
   }
 
   @override
   void onInit() {
-    getOrdersPendingData();
+    getArchiveOrdersData();
     super.onInit();
   }
 }
